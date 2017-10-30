@@ -65,6 +65,8 @@ string getdecor();
 
 extern const char * thisfilename;
 
+extern lightweight_map<string, string> initial_defines;
+
 extern lightweight_map<string, string> defines;//these two are useless for cli, but they may be useful for other stuff
 extern lightweight_map<string, unsigned int> labels;
 
@@ -176,6 +178,7 @@ int main(int argc, char * argv[])
 			"options can be zero or more of the following:\n"
 			" -nocheck (disable verifying ROM title; note that it )\n"
 			" -pause={no, err, warn, yes}\n"
+			" -Dname=definition sets a predefined definition\n"
 			" -verbose\n"
 			" -v or -version\n"
 			" -werror\n"
@@ -201,6 +204,15 @@ int main(int argc, char * argv[])
 				else if (par=="-pause=warn") pause=pause_warn;
 				else if (par=="-pause=yes") pause=pause_yes;
 				else libcon_badusage();
+			}
+			else if (!strncmp(par, "-D", strlen("-D")))
+			{
+				char **splitted = split(&par.str[2], "=");
+				if (!splitted[0] || !splitted[0][0] || !splitted[1] || !splitted[1][0] || splitted[2]) libcon_badusage();
+				else
+				{
+					initial_defines.insert(splitted[0], splitted[1]);
+				}
 			}
 			else libcon_badusage();
 		}
