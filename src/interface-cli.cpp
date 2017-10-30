@@ -213,6 +213,7 @@ int main(int argc, char * argv[])
 				{
 					initial_defines.insert(splitted[0], splitted[1]);
 				}
+				free(splitted);
 			}
 			else libcon_badusage();
 		}
