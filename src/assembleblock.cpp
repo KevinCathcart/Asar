@@ -491,6 +491,7 @@ extern bool math_pri;
 extern bool math_round;
 
 bool warnxkas;
+bool warnimpimmed;
 
 #include "scapegoat.hpp"
 extern lightweight_map<string, string> defines;
@@ -544,6 +545,7 @@ void initstuff()
 	if (arch==arch_superfx) asinit_superfx();
 
 	warnxkas=false;
+	warnimpimmed=false;
 	emulatexkas=false;
 }
 
@@ -1705,6 +1707,7 @@ void assembleblock(const char * block)
 		else error(0, "Invalid warn command.");
 		if(0);
 		else if (!stricmp(word[1], "xkas")) warnxkas=val;
+		else if (!stricmp(word[1], "immed")) warnimpimmed=val;
 		else error(0, "Invalid warn command.");
 	}
 	else if (is0("fastrom"))
