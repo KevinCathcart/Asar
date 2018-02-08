@@ -721,7 +721,7 @@ static long double getnumcore()
 static long double sanitize(long double val)
 {
 	if (val!=val) error("NaN encountered.");
-	if (math_round) return (int)val;
+	if (math_round) return (unsigned int)val;
 	return val;
 }
 
