@@ -131,7 +131,7 @@ cachedfile * opencachedfile(string fname)
 				fseek(cachedfilehandle->filehandle, 0, SEEK_END);
 				cachedfilehandle->filesize = ftell(cachedfilehandle->filehandle);
 				fseek(cachedfilehandle->filehandle, 0, SEEK_SET);
-				cachedfileindex++;
+				cachedfileindex = (cachedfileindex + 1) % numcachedfiles;
 			}
 		}
 	}
