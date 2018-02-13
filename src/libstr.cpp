@@ -608,4 +608,3 @@ const char * htmlentities(const char * text)
 {
 	return htmlencode(text, false);
 }
-

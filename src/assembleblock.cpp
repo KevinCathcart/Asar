@@ -690,7 +690,7 @@ void assembleblock(const char * block)
 	{
 		if (emulatexkas) warn0("Convert the patch to native Asar format instead of making an Asar-only xkas patch.");
 		const char * errmsg=NULL;
-		whiletracker wstatus;		
+		whiletracker wstatus;
 		wstatus.startline = thisline;
 		wstatus.iswhile = false;
 		wstatus.cond = false;

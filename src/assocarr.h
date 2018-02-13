@@ -21,7 +21,7 @@
 //myarr["index"]
 //  Similar to myarr.create("index"), but if the returned entry isn't changed by the next call to any function in the same structure, it's removed.
 //  if (myarr["index"]) is safe if type can cast to a bool, and myarr["index"]=4 is also valid if the assignment is valid for a type&. However, it is
-//  not safe to use assocarr<assocarr<int> > myarr; if (myarr["3"]["4"]), since the inner assocarr won't know that it's supposed to be garbage collected, 
+//  not safe to use assocarr<assocarr<int> > myarr; if (myarr["3"]["4"]), since the inner assocarr won't know that it's supposed to be garbage collected,
 //  and the outer one sees that the inner one changed, so you get pollution and memory waste. However, if (myarr["3"].exists("4")) is safe.
 //  Complexity: Same as myarr.create().
 //myarr.each(func)

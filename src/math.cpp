@@ -650,13 +650,13 @@ static long double getnumcore()
 			wrappedfunc2("lessequal", params[0], params[1], (params[0].value.longdoublevalue <= params[1].value.longdoublevalue ? 1.0 : 0.0), false);
 			wrappedfunc2("greater", params[0], params[1], (params[0].value.longdoublevalue > params[1].value.longdoublevalue ? 1.0 : 0.0), false);
 			wrappedfunc2("greaterequal", params[0], params[1], (params[0].value.longdoublevalue >= params[1].value.longdoublevalue ? 1.0 : 0.0), false);
-			
+
 			wrappedfunc2("and", params[0], params[1], ((params[0].value.longdoublevalue != 0 && params[1].value.longdoublevalue != 0) ? 1.0 : 0.0), false);
 			wrappedfunc2("or", params[0], params[1], ((params[0].value.longdoublevalue != 0 || params[1].value.longdoublevalue != 0) ? 1.0 : 0.0), false);
 			wrappedfunc2("nand", params[0], params[1], (!(params[0].value.longdoublevalue != 0 && params[1].value.longdoublevalue != 0) ? 1.0 : 0.0), false);
 			wrappedfunc2("nor", params[0], params[1], (!(params[0].value.longdoublevalue != 0 || params[1].value.longdoublevalue != 0) ? 1.0 : 0.0), false);
 			wrappedfunc2("xor", params[0], params[1], (((params[0].value.longdoublevalue != 0 && params[1].value.longdoublevalue == 0) || (params[0].value.longdoublevalue == 0 && params[1].value.longdoublevalue != 0)) ? 1.0 : 0.0), false);
-			
+
 			func("round", 2, overlycomplicatedround(params[0], params[1]), false);
 #undef maxint
 #undef func

@@ -17,14 +17,14 @@ New features:
 - Similarly, if a line ends in a backslash, the next line will be appended to it. The only difference
   to a comma is that unlike the comma, the backslah won't appear in the concatenated string.
   This is useful to split long function definitions into multiple lines.  Note that all whitespace
-  following the \ is ignored, whereas whitespace preceeding the \ isn't. Therefore  
+  following the \ is ignored, whereas whitespace preceeding the \ isn't. Therefore
       db\
- 	  $FF 	   
-  becomes 
-      db$FF 	
-  for example, whereas  
+ 	  $FF
+  becomes
+      db$FF
+  for example, whereas
       db \
- 	  $FF 	   
+ 	  $FF
   becomes
       db $FF
   This is by design, since some statements in Asar require spaces inbetween, whereas other statements
@@ -248,7 +248,7 @@ The commands that accept conditionals are if, elseif, else, and endif (and asser
   doesn't skip any code). The behaviour should be obvious.
 You generally want a couple of readN or user-changeable defines in a condition, but if 0 is a way to
   comment out large blocks of code at once.
-  
+
 Loops:
 The syntax and functionality are very similar to if conditionals, except you use "while" instead
   of "if" and the condition is evaluated repeatedly until it becomes < 1 instead of just once.
