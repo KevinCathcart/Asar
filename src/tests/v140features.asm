@@ -345,7 +345,7 @@ while !cond1 < 10
 endif
 
 
-db round(1.719247114, 2)*100
+db round(round(1.719247114, 2)*100,0)
 db round(100.6414710, 0)
 
 

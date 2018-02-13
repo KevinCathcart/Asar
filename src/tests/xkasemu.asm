@@ -1,7 +1,7 @@
 ;@53 54 41 52
 ;@21 61
 ;@BF 0A 80 00
-;@
+;@01 02 03 04 FF FE FD FC
 ;@01 02 03 03
 
 ;@xkas
@@ -14,7 +14,7 @@ db "!a"
 LDA derp,x
 derp:
 
-incbin .\nul
+incbin .\tiny.bin
 
 rep -1 : db 0
 rep 0 : db 1

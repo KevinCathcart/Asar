@@ -5,7 +5,7 @@
 #include "../libstr.h"
 #include "../autoarray.h"
 
-#define die() do { fclose(fopen("temp\\fail", "wb")); return 1; } while(0)
+#define die() do { fclose(fopen("temp/fail", "wb")); return 1; } while(0)
 #define dief(...) do { printf(__VA_ARGS__); die(); } while(0)
 
 #define min(a, b) ((a)<(b)?(a):(b))
@@ -39,7 +39,7 @@ int main(int argc, char * argv[])
 	FILE * asmfile=fopen(fname, "rt");
 	int pos=0;
 	int len=0;
-	FILE * rom=fopen("temp\\a.sfc", "wb");
+	FILE * rom=fopen("temp/a.sfc", "wb");
 	
 	int numiter=1;
 	
@@ -81,7 +81,7 @@ int main(int argc, char * argv[])
 	strcpy(asmdata, line);
 	char * asmdataend=strchr(asmdata, '\0');
 	asmdataend[fread(asmdataend, 1, 65536, asmfile)]='\0';
-	FILE * azmfile=fopen("temp\\a.azm", "wt");
+	FILE * azmfile=fopen("temp/a.azm", "wt");
 	while (asmdata[0]=='\n') asmdata++;
 	fwrite(asmdata, 1, strlen(asmdata), azmfile);
 	fclose(azmfile);
@@ -89,9 +89,9 @@ int main(int argc, char * argv[])
 	fclose(asmfile);
 	fclose(rom);
 	
-	sprintf(cmd, "..\\..\\asar temp\\a.azm temp\\a.sfc > temp\\err.log 2>&1");
+	sprintf(cmd, "../../asar temp/a.azm temp/a.sfc > temp/err.log 2>&1");
 	for (int i=0;i<numiter;i++) system(cmd);
-	FILE * err=fopen("temp\\err.log", "rt");
+	FILE * err=fopen("temp/err.log", "rt");
 	fseek(err, 0, SEEK_END);
 	if (ftell(err) && !shouldfail)
 	{
@@ -102,7 +102,7 @@ int main(int argc, char * argv[])
 	if (!ftell(err) && shouldfail) dief("%s: No insertion error\n", fname);
 	fclose(err);
 	
-	rom=fopen("temp\\a.sfc", "rb");
+	rom=fopen("temp/a.sfc", "rb");
 	fseek(rom, 0, SEEK_END);
 	int truelen=ftell(rom);
 	fseek(rom, 0, SEEK_SET);
