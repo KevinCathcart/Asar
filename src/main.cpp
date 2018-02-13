@@ -538,7 +538,15 @@ void assemblefile(const char * filename, bool toplevel)
 				else
 				{
 					// RPG Hacker: Why was this line even needed to begin with?
-					//if (strncasecmp(comment+2, "xkas", 4)) comment[1]=' ';
+					// Answer: ";@" was a general hide-from-xkas mechanism
+					//        that worked with any command, not just @ directives
+					//        So now we have a longer list of @directives to accept
+					//        to avoid breaking backwards compat while restoring thise
+					//        functionality
+					if (strncasecmp(comment+2, "xkas", 4)
+					    && strncasecmp(comment+2, "asar", 4)
+					    && strncasecmp(comment+2, "include", 7)
+					    && strncasecmp(comment+2, "includefrom", 11)) comment[1]=' ';
 					comment[0]=' ';
 				}
 			}
