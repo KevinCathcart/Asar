@@ -321,11 +321,6 @@ All built-in functions can be overridden by user-defined functions if you want. 
   with a function that calls _read3.
 
 Known bugs:
-- JML.w and JSL.w aren't rejected; they're treated as JML.l and JSL.l. This is since Asar has a much
-  more powerful size finding system than xkas, and automatically picks .w if it contains a label in
-  the same bank - even for .l-only instructions like JML. Therefore, I'm forced to either reject JML
-  and JSL to a label in the same bank, or allow JML.w, and I prefer allowing unusual but bad stuff
-  over rejecting common and valid stuff. Workaround: Don't do this.
 - If two freespaced codes are put in the same bank, Asar will use 24bit addressing for access
   between them, even though 16bit is possible. Workaround: Merge the freespaces (use pushpc and
   pullpc if needed), or ignore it. Do not demand explicit .w addressing, since you have no guarantee
