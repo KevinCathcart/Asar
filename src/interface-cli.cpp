@@ -78,7 +78,7 @@ void print(const char * str)
 {
 	puts(str);
 }
-
+FILE * symfile;
 FILE * errloc=stderr;
 static int errnum=0;
 
@@ -134,6 +134,11 @@ void onsigxcpu(int ignored)
 
 bool setmapper();
 
+void printsymbol(const string& key, unsigned int& address)
+{
+	fputs(hex2((address & 0xFF0000)>>16)+":"+hex4(address & 0xFFFF)+" "+key+"\n", symfile);
+}
+
 int main(int argc, char * argv[])
 {
 #ifdef TIMELIMIT
@@ -177,17 +182,20 @@ int main(int argc, char * argv[])
 			" -nocheck (disable verifying ROM title; note that it )\n"
 			" -pause={no, err, warn, yes}\n"
 			" -verbose\n"
+			" -sym\n"
 			" -v or -version\n"
 			" -werror\n"
 			);
 		bool ignoreerrors=false;
 		string par;
 		bool verbose=libcon_interactive;
+		bool symbols = false;
 		while (par=libcon_option())
 		{
 			if (par=="-werror") werror=true;
 			else if (par=="-nocheck") ignoreerrors=true;
 			else if (par=="-verbose") verbose=true;
+			else if (par=="-sym") symbols=true;
 			else if (par=="-v" || par=="-version")
 			{
 				puts(version);
@@ -328,6 +336,15 @@ int main(int argc, char * argv[])
 			pause(yes);
 		}
 		closerom();
+		if (symbols)
+		{
+			string symfilename = romname.replace(".sfc", ".sym", false).replace(".smc", ".sym", false);
+			symfile = fopen(symfilename, "wt");
+			fputs("[labels]\n", symfile);
+			labels.traverse(printsymbol);
+			fclose(symfile);
+
+		}
 		reseteverything();
 	}
 	catch(errfatal&)
