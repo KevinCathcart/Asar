@@ -495,6 +495,7 @@ bool warnimpimmed;
 
 #include "scapegoat.hpp"
 extern lightweight_map<string, string> defines;
+extern lightweight_map<string, string> initial_defines;
 
 void initstuff()
 {
@@ -516,6 +517,9 @@ void initstuff()
 	macrorecursion=0;
 	repeatnext=1;
 	defines.clear();
+	initial_defines.traverse([](const string &key, string &value) {
+		defines.insert(key, value);
+	});
 	ns="";
 	sublabels.reset();
 	poslabels.reset();

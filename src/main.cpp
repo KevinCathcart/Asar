@@ -296,6 +296,7 @@ struct sourcefile {
 };
 
 lightweight_map<string, sourcefile> filecontents;
+lightweight_map<string, string> initial_defines;
 lightweight_map<string, string> defines;
 
 void assembleblock(const char * block);
